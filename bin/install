@@ -8,7 +8,7 @@ TMPDIR=${TMPDIR:-/tmp}
 [ -n "$ASDF_INSTALL_VERSION" ] || (echo >&2 'Missing ASDF_INSTALL_VERSION' && exit 1)
 [ -n "$ASDF_INSTALL_PATH" ] || (echo >&2 'Missing ASDF_INSTALL_PATH' && exit 1)
 
-install_goreleaser() {
+install_goreleaser_pro() {
   local install_type
   # shellcheck disable=SC2034
   install_type=$1
@@ -26,7 +26,7 @@ install_goreleaser() {
   mkdir -p "${bin_install_path}"
 
   local bin_path="${bin_install_path}/goreleaser"
-  echo "Downloading GoReleaser from ${download_url}"
+  echo "Downloading GoReleaser Pro from ${download_url}"
   curl -sSL "$download_url" -o "${install_path}/goreleaser.${ext}"
   if [ "$ext" == "tar.gz" ]; then
     tar xzf "${install_path}/goreleaser.tar.gz" -C "${install_path}"
@@ -101,7 +101,7 @@ get_download_url() {
   platform="$(get_platform)"
   local ext
   ext="$(get_ext)"
-  echo "https://github.com/goreleaser/goreleaser/releases/download/v${version}/goreleaser_${platform}_${arch}.${ext}"
+  echo "https://github.com/goreleaser/goreleaser-pro/releases/download/v${version}/goreleaser-pro_${platform}_${arch}.${ext}"
 }
 
-install_goreleaser "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
+install_goreleaser_pro "$ASDF_INSTALL_TYPE" "$ASDF_INSTALL_VERSION" "$ASDF_INSTALL_PATH"
